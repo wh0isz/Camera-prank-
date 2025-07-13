@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Camera Access</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    video {
+      width: 90%;
+      max-width: 500px;
+      border: 2px solid #fff;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔒 Verify your identity to continue</h2>
+  <p>Camera access is required for verification.</p>
+  <video id="cam" autoplay playsinline></video>
+  <script>
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        document.getElementById('cam').srcObject = stream;
+      })
+      .catch(err => {
+        alert("Camera access denied or not supported.");
+      });
+  </script>
+</body>
+</html>
